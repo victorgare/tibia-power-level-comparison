@@ -97,7 +97,7 @@ export default function Home() {
     }
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="w-full max-w-4xl">
+            <div className="w-full max-w-7xl sm:max-w-4xl">
                 {errorMessages.map((value, index) => {
                     return (
                         <div
@@ -111,7 +111,7 @@ export default function Home() {
                 })}
 
                 <form className="mb-4">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <PlayerForm
                             player={firstPlayer}
                             onChange={(value) => setFirstPlayer(value)}
