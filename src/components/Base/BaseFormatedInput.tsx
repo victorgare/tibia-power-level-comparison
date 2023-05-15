@@ -52,7 +52,7 @@ export default function BaseFormatedInput(props: BaseFormatedInput) {
 
     useEffect(() => {
         format(props.value)
-    }, [])
+    }, [props.value])
 
     return (
         <>

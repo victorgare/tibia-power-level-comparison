@@ -11,27 +11,31 @@ export default function Home() {
 
     const [errorMessages, setErrorMessages] = useState<string[]>([])
 
-    const firstItem = JSON.parse(
-        localStorage.getItem('firstPlayer') ?? ''
-    ) as Player
+    const [firstPlayer, setFirstPlayer] = useState<Player>({
+        name: 'Player A',
+    } as Player)
 
-    const secondItem = JSON.parse(
-        localStorage.getItem('secondPlayer') ?? ''
-    ) as Player
+    const [secondPlayer, setSecondPlayer] = useState<Player>({
+        name: 'Player B',
+    } as Player)
 
-    const [firstPlayer, setFirstPlayer] = useState<Player>(
-        firstItem ??
-            ({
-                name: 'Player A',
-            } as Player)
-    )
+    useEffect(() => {
+        const firstItem = JSON.parse(
+            localStorage.getItem('firstPlayer') ?? 'null'
+        ) as Player
 
-    const [secondPlayer, setSecondPlayer] = useState<Player>(
-        secondItem ??
-            ({
-                name: 'Player B',
-            } as Player)
-    )
+        if (firstItem) {
+            setFirstPlayer(firstItem)
+        }
+
+        const secondItem = JSON.parse(
+            localStorage.getItem('secondPlayer') ?? 'null'
+        ) as Player
+
+        if (secondItem) {
+            setSecondPlayer(secondItem)
+        }
+    }, [])
 
     useEffect(() => {
         localStorage.setItem('firstPlayer', JSON.stringify(firstPlayer))
