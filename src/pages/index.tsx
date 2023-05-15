@@ -10,17 +10,36 @@ export default function Home() {
     const [highLevelName, setHighLevelName] = useState<string>('')
 
     const [errorMessages, setErrorMessages] = useState<string[]>([])
-    const [firstPlayer, setFirstPlayer] = useState<Player>({
-        name: 'Player A',
-    } as Player)
 
-    const [secondPlayer, setSecondPlayer] = useState<Player>({
-        name: 'Player B',
-    } as Player)
+    const firstItem = JSON.parse(
+        localStorage.getItem('firstPlayer') ?? ''
+    ) as Player
+
+    const secondItem = JSON.parse(
+        localStorage.getItem('secondPlayer') ?? ''
+    ) as Player
+
+    const [firstPlayer, setFirstPlayer] = useState<Player>(
+        firstItem ??
+            ({
+                name: 'Player A',
+            } as Player)
+    )
+
+    const [secondPlayer, setSecondPlayer] = useState<Player>(
+        secondItem ??
+            ({
+                name: 'Player B',
+            } as Player)
+    )
 
     useEffect(() => {
+        localStorage.setItem('firstPlayer', JSON.stringify(firstPlayer))
+        localStorage.setItem('secondPlayer', JSON.stringify(secondPlayer))
+
         calculate()
     }, [firstPlayer, secondPlayer])
+
     const calculate = () => {
         // create an array ordered by level
         const players = [firstPlayer, secondPlayer].sort(
