@@ -32,6 +32,7 @@ export const options = {
             text: 'Experience',
         },
     },
+    maintainAspectRatio: false,
 }
 
 interface Props {

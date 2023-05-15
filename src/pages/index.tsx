@@ -125,11 +125,13 @@ export default function Home() {
                 </form>
 
                 {lineChart.length > 1 ? (
-                    <LineChart
-                        firstDataSetLabel={lowerLevelName}
-                        secondDataSetLabel={highLevelName}
-                        lineChats={lineChart}
-                    />
+                    <div className="h-96 min-h-full">
+                        <LineChart
+                            firstDataSetLabel={lowerLevelName}
+                            secondDataSetLabel={highLevelName}
+                            lineChats={lineChart}
+                        />
+                    </div>
                 ) : (
                     <></>
                 )}
