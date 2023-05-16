@@ -2,6 +2,7 @@ import { useDebouncedCallback } from 'use-debounce'
 import DecimalInput from '../DecimalInputs/DecimalInput'
 import TextInput from '../TextInput/TextInput'
 import PlayerFormProps from './Model/PlayerFormProps'
+import Image from 'next/image'
 
 export default function PlayerForm(props: PlayerFormProps) {
     var debounced = useDebouncedCallback(
@@ -17,6 +18,18 @@ export default function PlayerForm(props: PlayerFormProps) {
     return (
         <>
             <div className="w-full rounded bg-white px-8 pb-8 pt-6 shadow-md">
+                <div className="w-full">
+                    {props.image ? (
+                        <Image
+                            className="mx-auto"
+                            src={props.image}
+                            height={128}
+                            alt="Outfit"
+                        />
+                    ) : (
+                        <></>
+                    )}
+                </div>
                 <div className="mb-4">
                     <TextInput
                         id="character-name"

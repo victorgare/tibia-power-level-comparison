@@ -4,6 +4,9 @@ import Player from '@/components/PlayerForm/Model/Player'
 import PlayerForm from '@/components/PlayerForm/PlayerForm'
 import { useEffect, useState } from 'react'
 
+import dejair from '../imgs/dejair.gif'
+import bobeek from '../imgs/bobeek.gif'
+
 export default function Home() {
     const [lineChart, setLineChart] = useState<LineChartModel[]>([])
     const [lowerLevelName, setLowerLevelName] = useState<string>('')
@@ -12,11 +15,11 @@ export default function Home() {
     const [errorMessages, setErrorMessages] = useState<string[]>([])
 
     const [firstPlayer, setFirstPlayer] = useState<Player>({
-        name: 'Player A',
+        name: 'Dejair Invencivel',
     } as Player)
 
     const [secondPlayer, setSecondPlayer] = useState<Player>({
-        name: 'Player B',
+        name: 'Bobeek',
     } as Player)
 
     useEffect(() => {
@@ -138,11 +141,13 @@ export default function Home() {
                         <PlayerForm
                             player={firstPlayer}
                             onChange={(value) => setFirstPlayer(value)}
+                            image={dejair}
                         />
 
                         <PlayerForm
                             player={secondPlayer}
                             onChange={(value) => setSecondPlayer(value)}
+                            image={bobeek}
                         />
                     </div>
                 </form>
