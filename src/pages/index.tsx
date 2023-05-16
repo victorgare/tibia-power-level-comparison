@@ -83,7 +83,7 @@ export default function Home() {
                         totalXp: highTotalXp,
                     },
                 })
-            } while (lowerTotalXp < highTotalXp)
+            } while (lowerTotalXp < highTotalXp && chart.length <= 730)
 
             setLineChart(chart)
             setLowerLevelName(lowerLevelPlayer.name)
@@ -151,7 +151,18 @@ export default function Home() {
                         />
                     </div>
                 </form>
-
+                {lineChart.length >= 730 ? (
+                    <div
+                        className="relative mb-4 rounded border border-indigo-400 bg-indigo-100 px-4 py-3 text-indigo-700"
+                        role="alert"
+                    >
+                        <strong className="font-bold">
+                            Only showing next 2 years{' '}
+                        </strong>
+                    </div>
+                ) : (
+                    <></>
+                )}
                 {lineChart.length > 1 ? (
                     <div className="h-96 min-h-full">
                         <LineChart
