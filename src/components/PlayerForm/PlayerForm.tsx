@@ -3,6 +3,8 @@ import DecimalInput from '../DecimalInputs/DecimalInput'
 import TextInput from '../TextInput/TextInput'
 import PlayerFormProps from './Model/PlayerFormProps'
 import Image from 'next/image'
+import { ChangeEvent, useEffect } from 'react'
+import { fetchCharacterData } from './CharacterApi'
 
 export default function PlayerForm(props: PlayerFormProps) {
     var debounced = useDebouncedCallback(
@@ -15,6 +17,24 @@ export default function PlayerForm(props: PlayerFormProps) {
         1000
     )
 
+    const nameDebounced = useDebouncedCallback(async (name: string) => {
+        const character = (await fetchCharacterData(name)).characters.character
+        if (character.level > 0) {
+            debounced('name', name)
+            debounced('currentLevel', character.level)
+        }
+    }, 1000)
+
+    const characterNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault()
+        nameDebounced(event.target.value)
+    }
+
+    useEffect(() => {
+        if (props.player.name) {
+            nameDebounced(props.player.name)
+        }
+    }, [])
     return (
         <>
             <div className="w-full rounded bg-white px-8 pb-8 pt-6 shadow-md">
@@ -36,10 +56,7 @@ export default function PlayerForm(props: PlayerFormProps) {
                         label="Character name"
                         placeholder="Dejair Invencivel"
                         value={props.player.name}
-                        onChange={(event) => {
-                            event.preventDefault()
-                            debounced('name', event.target.value)
-                        }}
+                        onChange={characterNameChange}
                     />
                 </div>
                 <div className="mb-6">
