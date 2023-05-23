@@ -12,7 +12,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
             <Navbar />
-            <main>{children}</main>
+            <main className="flex min-h-screen flex-col items-center justify-between p-24">
+                <div className="w-full max-w-7xl sm:max-w-4xl">{children}</div>
+            </main>
             {/* <Footer /> */}
         </>
     )

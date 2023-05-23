@@ -122,63 +122,61 @@ export default function Home() {
         return customErrorMessage.length <= 0
     }
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="w-full max-w-7xl sm:max-w-4xl">
-                {errorMessages.map((value, index) => {
-                    return (
-                        <div
-                            key={index}
-                            className="relative mb-4 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
-                            role="alert"
-                        >
-                            <strong className="font-bold">{value} </strong>
-                        </div>
-                    )
-                })}
-
-                <form className="mb-4">
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <PlayerForm
-                            player={firstPlayer}
-                            onChange={(value) => setFirstPlayer(value)}
-                            image={dejair}
-                        />
-
-                        <PlayerForm
-                            player={secondPlayer}
-                            onChange={(value) => setSecondPlayer(value)}
-                            image={bobeek}
-                        />
-                    </div>
-                </form>
-                {lineChart.length >= 730 ? (
+        <>
+            {errorMessages.map((value, index) => {
+                return (
                     <div
-                        className="relative mb-4 rounded border border-indigo-400 bg-indigo-100 px-4 py-3 text-indigo-700"
+                        key={index}
+                        className="relative mb-4 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
                         role="alert"
                     >
-                        <strong className="font-bold">
-                            Only showing next 2 years{' '}
-                        </strong>
+                        <strong className="font-bold">{value} </strong>
                     </div>
-                ) : (
-                    <></>
-                )}
-                {lineChart.length > 1 ? (
-                    <div className="h-96 min-h-full">
-                        <LineChart
-                            firstDataSetLabel={lowerLevelName}
-                            secondDataSetLabel={highLevelName}
-                            lineChats={lineChart}
-                        />
-                    </div>
-                ) : (
-                    <></>
-                )}
-                <p className="text-center text-xs text-gray-500">
-                    &copy;2023{' '}
-                    <a href="https://github.com/victorgare">Victor Garé</a>
-                </p>
-            </div>
-        </main>
+                )
+            })}
+
+            <form className="mb-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <PlayerForm
+                        player={firstPlayer}
+                        onChange={(value) => setFirstPlayer(value)}
+                        image={dejair}
+                    />
+
+                    <PlayerForm
+                        player={secondPlayer}
+                        onChange={(value) => setSecondPlayer(value)}
+                        image={bobeek}
+                    />
+                </div>
+            </form>
+            {lineChart.length >= 730 ? (
+                <div
+                    className="relative mb-4 rounded border border-indigo-400 bg-indigo-100 px-4 py-3 text-indigo-700"
+                    role="alert"
+                >
+                    <strong className="font-bold">
+                        Only showing next 2 years{' '}
+                    </strong>
+                </div>
+            ) : (
+                <></>
+            )}
+            {lineChart.length > 1 ? (
+                <div className="h-96 min-h-full">
+                    <LineChart
+                        firstDataSetLabel={lowerLevelName}
+                        secondDataSetLabel={highLevelName}
+                        lineChats={lineChart}
+                    />
+                </div>
+            ) : (
+                <></>
+            )}
+            <p className="text-center text-xs text-gray-500">
+                &copy;2023{' '}
+                <a href="https://github.com/victorgare">Victor Garé</a>
+            </p>
+        </>
     )
 }
