@@ -39,7 +39,7 @@ interface Props {
     tcPrice: number
 }
 
-export default function ItensWrapper(props: Props) {
+export default function PotionsWrapper(props: Props) {
     const availableItens: WorthCardModel[] = [
         {
             itemName: 'Health Potion',
