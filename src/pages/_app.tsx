@@ -1,10 +1,13 @@
 import { AppProps } from 'next/app'
 import '../styles/globals.css'
+import Layout from '@/layouts/layout'
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
-            <Component {...pageProps} />
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
         </>
     )
 }
