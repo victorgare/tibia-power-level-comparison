@@ -1,14 +1,31 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
-const navigation = [{ name: 'Power level calc', href: '/', current: true }]
+interface Navigation {
+    name: string
+    href: string
+    current: boolean
+}
+const navigation = [
+    { name: 'Power level calc', href: '/', current: true },
+    { name: 'Store supply calc', href: '/StoreWorth', current: false },
+] as Navigation[]
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
+    const handlePageChange = (item: Navigation) => {
+        // set all to false
+        navigation.forEach((obj) => (obj.current = false))
+
+        // set current to true
+        item.current = true
+    }
     return (
         <>
             <Disclosure as="nav" className="bg-gray-800">
@@ -42,6 +59,9 @@ export default function Navbar() {
                                                 <Link
                                                     key={item.name}
                                                     href={item.href}
+                                                    onClick={() =>
+                                                        handlePageChange(item)
+                                                    }
                                                     className={classNames(
                                                         item.current
                                                             ? 'bg-gray-900 text-white'
@@ -70,6 +90,7 @@ export default function Navbar() {
                                         key={item.name}
                                         as="a"
                                         href={item.href}
+                                        onClick={() => handlePageChange(item)}
                                         className={classNames(
                                             item.current
                                                 ? 'bg-gray-900 text-white'
