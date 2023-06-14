@@ -1,3 +1,5 @@
 import { CharacterBaseApiModel } from './CharacterBaseApiModel'
 
-export interface GuildMemberApiModel extends CharacterBaseApiModel {}
+export interface GuildMemberApiModel extends CharacterBaseApiModel {
+    status: string
+}

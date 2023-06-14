@@ -11,11 +11,13 @@ import { PlayerApiModel } from '@/api/Model/PlayerApiModel'
 import GuildInfo from '@/components/GuildInfo/GuildInfo'
 import axios from 'axios'
 import ErrorAlert from '@/components/Alerts/ErrorAlert'
+import Switch from '@/components/Switch/Switch'
 
 export default function MembersResidence() {
     const abortControllerRef = useRef<AbortController>(new AbortController())
 
     const [guildName, setGuildName] = useState<string>('')
+    const [onlineOnly, setOnlineOnly] = useState<boolean>(true)
     const [currentProgressCounter, setCurrentProgressCounter] =
         useState<number>(0)
     const [totalProgressCounter, setTotalProgressCounter] = useState<number>(0)
@@ -44,13 +46,18 @@ export default function MembersResidence() {
     const findMembers = async (members: GuildMemberApiModel[]) => {
         try {
             for (const member of members) {
+                setCurrentProgressCounter((previousValue) => previousValue + 1)
+
+                if (onlineOnly && member.status === 'offline') {
+                    continue
+                }
+
                 const player = await fetchCharacterData(
                     member.name,
                     abortControllerRef.current.signal
                 )
 
                 setGuildMembers((prevValue) => [...prevValue, player])
-                setCurrentProgressCounter((previousValue) => previousValue + 1)
             }
         } catch (error) {
             if (axios.isCancel(error)) {
@@ -77,26 +84,47 @@ export default function MembersResidence() {
         <>
             <div className="w-full rounded bg-white px-8 pb-8 pt-6 shadow-md">
                 <div className="grid grid-flow-row grid-rows-1 gap-4">
-                    <div className="relative col-start-1 col-end-3 row-auto mb-6">
-                        <div className="mx-auto flex max-w-[16rem] flex-none">
-                            <span className="inset-y-0 left-9 top-5 flex flex-nowrap items-center pr-1 pt-5">
-                                <Image
-                                    className="mx-auto"
-                                    src={defaultGuildLogo}
-                                    height={32}
-                                    alt="Default guild logo"
-                                />
-                            </span>
+                    {/* col-start-1 col-end-3  */}
+                    <div className="relative row-auto mb-6 ">
+                        <div className="flex flex-nowrap gap-4">
+                            <div className="ml-auto flex max-w-[16rem] ">
+                                <span className="inset-y-0 left-9 top-5 flex flex-nowrap items-center pr-1 pt-5">
+                                    <Image
+                                        className="mx-auto"
+                                        src={defaultGuildLogo}
+                                        height={32}
+                                        alt="Default guild logo"
+                                    />
+                                </span>
 
-                            <TextInput
-                                id="guild-name"
-                                label="Guild name"
-                                placeholder="Libertabra Pune"
-                                value={guildName}
-                                onChange={(event) =>
-                                    handleGuildNameChange(event.target.value)
-                                }
-                            />
+                                <TextInput
+                                    id="guild-name"
+                                    label="Guild name"
+                                    placeholder="Libertabra Pune"
+                                    value={guildName}
+                                    onChange={(event) =>
+                                        handleGuildNameChange(
+                                            event.target.value
+                                        )
+                                    }
+                                />
+                            </div>
+
+                            <div className="mr-auto flex items-center justify-center">
+                                <Switch
+                                    checked={onlineOnly}
+                                    label="Online only"
+                                    onChange={(value) => {
+                                        setOnlineOnly(value)
+                                        guildNameDebounced(guildName)
+                                    }}
+                                />
+                            </div>
+                            {/* <div className="">
+                                <span className="inset-y-0 left-9 top-5 flex flex-nowrap items-center pl-4 pt-5">
+                                    
+                                </span>
+                            </div> */}
                         </div>
                         <ErrorAlert messages={errorMessages} />
                         <div className="col-span-2 mt-4">
