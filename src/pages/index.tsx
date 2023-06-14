@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 
 import dejair from '../imgs/dejair.gif'
 import bobeek from '../imgs/bobeek.gif'
+import ErrorAlert from '@/components/Alerts/ErrorAlert'
+import InfoAlert from '@/components/Alerts/InfoAlert'
 
 export default function Home() {
     const [lineChart, setLineChart] = useState<LineChartModel[]>([])
@@ -123,17 +125,7 @@ export default function Home() {
     }
     return (
         <>
-            {errorMessages.map((value, index) => {
-                return (
-                    <div
-                        key={index}
-                        className="relative mb-4 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
-                        role="alert"
-                    >
-                        <strong className="font-bold">{value} </strong>
-                    </div>
-                )
-            })}
+            <ErrorAlert messages={errorMessages} />
 
             <form className="mb-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -150,17 +142,8 @@ export default function Home() {
                     />
                 </div>
             </form>
-            {lineChart.length >= 730 ? (
-                <div
-                    className="relative mb-4 rounded border border-indigo-400 bg-indigo-100 px-4 py-3 text-indigo-700"
-                    role="alert"
-                >
-                    <strong className="font-bold">
-                        Only showing next 2 years{' '}
-                    </strong>
-                </div>
-            ) : (
-                <></>
+            {lineChart.length >= 730 && (
+                <InfoAlert messages={['Only showing next 2 years']} />
             )}
             {lineChart.length > 1 ? (
                 <div className="h-96 min-h-full">

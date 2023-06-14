@@ -1,8 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 
 interface Navigation {
     name: string
@@ -12,6 +10,7 @@ interface Navigation {
 const navigation = [
     { name: 'Power level calc', href: '/', current: true },
     { name: 'Store supply calc', href: '/StoreWorth', current: false },
+    { name: 'Guild Info', href: '/GuildInfo', current: false },
 ] as Navigation[]
 
 function classNames(...classes: string[]) {

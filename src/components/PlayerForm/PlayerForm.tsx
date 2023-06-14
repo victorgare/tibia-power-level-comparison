@@ -4,7 +4,7 @@ import TextInput from '../TextInput/TextInput'
 import PlayerFormProps from './Model/PlayerFormProps'
 import Image from 'next/image'
 import { ChangeEvent, useEffect } from 'react'
-import { fetchCharacterData } from './CharacterApi'
+import { fetchCharacterData } from '../../api/CharacterApi'
 
 export default function PlayerForm(props: PlayerFormProps) {
     var debounced = useDebouncedCallback(
