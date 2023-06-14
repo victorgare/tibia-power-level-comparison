@@ -15,7 +15,7 @@ import ErrorAlert from '@/components/Alerts/ErrorAlert'
 export default function MembersResidence() {
     const abortControllerRef = useRef<AbortController>(new AbortController())
 
-    const [guildName, setGuildName] = useState<string>('Amigos do xopazo')
+    const [guildName, setGuildName] = useState<string>('')
     const [currentProgressCounter, setCurrentProgressCounter] =
         useState<number>(0)
     const [totalProgressCounter, setTotalProgressCounter] = useState<number>(0)
@@ -55,8 +55,9 @@ export default function MembersResidence() {
         } catch (error) {
             if (axios.isCancel(error)) {
                 console.error('Request canceled')
+            } else {
+                console.log(error)
             }
-            console.log(error)
         }
     }
 
