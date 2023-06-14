@@ -3,6 +3,7 @@ import MembersResidenceTable from './MembersResidenceTable'
 import { GuildProps } from './Model/GuildProps'
 import { ResidenceModel } from './Model/ResidenceModel'
 import { PlayerApiModel } from '@/api/Model/PlayerApiModel'
+import MembersTable from './MembersTable'
 
 export default function GuildInfo(props: GuildProps) {
     const [membersResidence, setMembersResidence] = useState<ResidenceModel[]>(
@@ -37,8 +38,13 @@ export default function GuildInfo(props: GuildProps) {
 
     return (
         <>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 overflow-x-auto sm:grid-cols-2">
                 <MembersResidenceTable residences={membersResidence} />
+                <MembersTable
+                    members={props.members.map((item) => {
+                        return item.characters.character
+                    })}
+                />
             </div>
         </>
     )

@@ -84,7 +84,6 @@ export default function MembersResidence() {
         <>
             <div className="w-full rounded bg-white px-8 pb-8 pt-6 shadow-md">
                 <div className="grid grid-flow-row grid-rows-1 gap-4">
-                    {/* col-start-1 col-end-3  */}
                     <div className="relative row-auto mb-6 ">
                         <div className="flex flex-nowrap gap-4">
                             <div className="ml-auto flex max-w-[16rem] ">
@@ -120,11 +119,6 @@ export default function MembersResidence() {
                                     }}
                                 />
                             </div>
-                            {/* <div className="">
-                                <span className="inset-y-0 left-9 top-5 flex flex-nowrap items-center pl-4 pt-5">
-                                    
-                                </span>
-                            </div> */}
                         </div>
                         <ErrorAlert messages={errorMessages} />
                         <div className="col-span-2 mt-4">
