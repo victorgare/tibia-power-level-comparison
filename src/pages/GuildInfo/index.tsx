@@ -1,7 +1,8 @@
 import { useDebouncedCallback } from 'use-debounce'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import defaultGuildLogo from '../../imgs/default_guild_logo.gif'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import TextInput from '@/components/TextInput/TextInput'
 import ProgressBar from '@/components/Pogressbar/Progressbar'
 import { fetchGuildData } from '@/api/GuildApi'
@@ -15,7 +16,7 @@ import Switch from '@/components/Switch/Switch'
 
 export default function MembersResidence() {
     const abortControllerRef = useRef<AbortController>(new AbortController())
-
+    const router = useRouter()
     const [guildName, setGuildName] = useState<string>('')
     const [onlineOnly, setOnlineOnly] = useState<boolean>(true)
     const [currentProgressCounter, setCurrentProgressCounter] =
@@ -26,6 +27,9 @@ export default function MembersResidence() {
 
     const guildNameDebounced = useDebouncedCallback(
         async (guildName: string) => {
+            // update the URL
+            updateUrl()
+
             // clean old data
             resetData()
 
@@ -80,6 +84,33 @@ export default function MembersResidence() {
         setErrorMessages(() => [...[]])
     }
 
+    const updateUrl = () => {
+        router.push(
+            {
+                pathname: '/GuildInfo',
+                query: {
+                    guildName,
+                    onlineOnly,
+                },
+            },
+            undefined,
+            {
+                shallow: true,
+            }
+        )
+    }
+
+    useEffect(() => {
+        const { guildName, onlineOnly } = router.query
+
+        if (guildName) {
+            setGuildName(guildName.toString())
+        }
+
+        if (onlineOnly) {
+            setOnlineOnly(Boolean(onlineOnly))
+        }
+    }, [router.isReady])
     return (
         <>
             <div className="w-full rounded bg-white px-8 pb-8 pt-6 shadow-md">
