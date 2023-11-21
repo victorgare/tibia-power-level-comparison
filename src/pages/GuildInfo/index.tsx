@@ -101,10 +101,13 @@ export default function MembersResidence() {
     }
 
     useEffect(() => {
-        const { guildName, onlineOnly } = router.query
+        const { guildName, onlineOnly } = router.query as {
+            guildName?: string
+            onlineOnly?: boolean
+        }
 
         if (guildName) {
-            setGuildName(guildName.toString())
+            handleGuildNameChange(guildName.toString())
         }
 
         if (onlineOnly) {
