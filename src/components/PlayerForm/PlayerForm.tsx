@@ -21,6 +21,7 @@ export default function PlayerForm(props: PlayerFormProps) {
         const character = (await fetchCharacterData(name)).characters.character
         if (character.level > 0) {
             debounced('name', name)
+            debounced.flush()
             debounced('currentLevel', character.level)
         }
     }, 1000)
