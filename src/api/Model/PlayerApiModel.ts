@@ -1,7 +1,7 @@
 import { CharacterApiModel } from './CharacterApiModel'
 
 export interface PlayerApiModel {
-    characters: {
+    character: {
         character: CharacterApiModel
     }
 }

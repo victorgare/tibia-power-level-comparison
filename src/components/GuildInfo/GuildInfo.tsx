@@ -13,7 +13,7 @@ export default function GuildInfo(props: GuildProps) {
     const findMembersResidences = (members: PlayerApiModel[]) => {
         const residences: ResidenceModel[] = []
         for (const member of members) {
-            const playerResidence = member.characters.character.residence
+            const playerResidence = member.character.character.residence
 
             var existingResidenceIndex = residences.findIndex(
                 (item) => item.residence === playerResidence
@@ -42,7 +42,7 @@ export default function GuildInfo(props: GuildProps) {
                 <MembersResidenceTable residences={membersResidence} />
                 <MembersTable
                     members={props.members.map((item) => {
-                        return item.characters.character
+                        return item.character.character
                     })}
                 />
             </div>

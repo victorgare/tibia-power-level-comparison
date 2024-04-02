@@ -18,7 +18,7 @@ export default function PlayerForm(props: PlayerFormProps) {
     )
 
     const nameDebounced = useDebouncedCallback(async (name: string) => {
-        const character = (await fetchCharacterData(name)).characters.character
+        const character = (await fetchCharacterData(name)).character.character
         if (character.level > 0) {
             debounced('name', name)
             debounced.flush()

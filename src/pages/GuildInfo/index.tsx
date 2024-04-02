@@ -33,7 +33,7 @@ export default function MembersResidence() {
             // clean old data
             resetData()
 
-            const guild = (await fetchGuildData(guildName)).guilds.guild
+            const guild = (await fetchGuildData(guildName)).guild
 
             if (guild.members_total > 0) {
                 setCurrentProgressCounter(0)
