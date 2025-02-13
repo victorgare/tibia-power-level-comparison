@@ -11,6 +11,7 @@ const navigation = [
     { name: 'Power level calc', href: '/', current: true },
     { name: 'Store supply calc', href: '/StoreWorth', current: false },
     { name: 'Guild Info', href: '/GuildInfo', current: false },
+    { name: 'Death calculator', href: '/DeathCalculator', current: false },
 ] as Navigation[]
 
 function classNames(...classes: string[]) {

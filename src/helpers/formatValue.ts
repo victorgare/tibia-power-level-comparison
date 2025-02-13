@@ -1,13 +1,3 @@
-export const formatNumberWithCommas = (value: number | string): string => {
-    const formattedValue = value
-        .toString()
-        .replace(/,/g, '')
-        .replace(/\D/g, '')
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-
-    return formattedValue
-}
-
 export const formatDecimal = (value: string | number): string => {
     const formattedValue = parseFloat(removeMask(value.toString()))
 
