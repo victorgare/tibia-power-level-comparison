@@ -124,16 +124,6 @@ export default function DeathCalculator() {
                                         </TableRow>
                                     )
                                 })}
-                                {/* <TableRow>
-                                    <TableCell className="font-medium">
-                                        INV001
-                                    </TableCell>
-                                    <TableCell>Paid</TableCell>
-                                    <TableCell>Credit Card</TableCell>
-                                    <TableCell className="text-right">
-                                        $250.00
-                                    </TableCell>
-                                </TableRow> */}
                             </TableBody>
                         </Table>
                     </div>
