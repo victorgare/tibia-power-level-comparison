@@ -72,7 +72,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Great Mana Potion',
             tcAmount: 26,
             itemQuantity: 250,
-            goldPrice: 144,
+            goldPrice: 158,
             image: {
                 src: greatManaPotionImg,
             },
@@ -81,7 +81,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Great Spirit Potion',
             tcAmount: 41,
             itemQuantity: 250,
-            goldPrice: 228,
+            goldPrice: 254,
             image: {
                 src: greatSpiritPotionImg,
             },
@@ -99,7 +99,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Ultimate Mana Potion',
             tcAmount: 79,
             itemQuantity: 250,
-            goldPrice: 438,
+            goldPrice: 488,
             image: {
                 src: ultimateManaPotionImg,
             },
@@ -108,7 +108,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Ultimate Spirit Potion',
             tcAmount: 79,
             itemQuantity: 250,
-            goldPrice: 438,
+            goldPrice: 488,
             image: {
                 src: ultimateSpiritPotionImg,
             },
@@ -117,7 +117,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Supreme Health Potion',
             tcAmount: 113,
             itemQuantity: 250,
-            goldPrice: 625,
+            goldPrice: 650,
             image: {
                 src: supremeHealthPotionImg,
             },
@@ -135,7 +135,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Strong Mana Potion',
             tcAmount: 17,
             itemQuantity: 250,
-            goldPrice: 93,
+            goldPrice: 108,
             image: {
                 src: strongManaPotionImg,
             },
@@ -171,7 +171,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Great Spirit Keg',
             tcAmount: 105,
             itemQuantity: 500,
-            goldPrice: 228,
+            goldPrice: 254,
             image: {
                 src: greatSpiritKegImg,
             },
@@ -189,7 +189,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Ultimate Spirit Keg',
             tcAmount: 202,
             itemQuantity: 500,
-            goldPrice: 438,
+            goldPrice: 488,
             image: {
                 src: ultimateSpiritKegImg,
             },
@@ -198,7 +198,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Supreme Health Keg',
             tcAmount: 288,
             itemQuantity: 500,
-            goldPrice: 625,
+            goldPrice: 650,
             image: {
                 src: supremeHealthKegImg,
             },
@@ -216,7 +216,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Strong Mana Keg',
             tcAmount: 43,
             itemQuantity: 500,
-            goldPrice: 93,
+            goldPrice: 108,
             image: {
                 src: strongManaKegImg,
             },
@@ -225,7 +225,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Great Mana Keg',
             tcAmount: 66,
             itemQuantity: 500,
-            goldPrice: 144,
+            goldPrice: 158,
             image: {
                 src: greatManaKegImg,
             },
@@ -234,7 +234,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Ultimate Mana Keg',
             tcAmount: 202,
             itemQuantity: 500,
-            goldPrice: 438,
+            goldPrice: 488,
             image: {
                 src: ultimateManaKegImg,
             },
@@ -252,7 +252,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Great Mana Cask',
             tcAmount: 14,
             itemQuantity: 1000,
-            goldPrice: 144,
+            goldPrice: 158,
             image: {
                 src: greatManaCask,
             },
@@ -261,7 +261,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Great Spirit Cask',
             tcAmount: 22,
             itemQuantity: 1000,
-            goldPrice: 228,
+            goldPrice: 254,
             image: {
                 src: greatSpiritCask,
             },
@@ -297,7 +297,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Strong Mana Cask',
             tcAmount: 9,
             itemQuantity: 1000,
-            goldPrice: 93,
+            goldPrice: 108,
             image: {
                 src: strongManaCask,
             },
@@ -306,7 +306,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Supreme Health Cask',
             tcAmount: 59,
             itemQuantity: 1000,
-            goldPrice: 625,
+            goldPrice: 650,
             image: {
                 src: supremeHealthCaskImg,
             },
@@ -324,7 +324,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Ultimate Mana Cask',
             tcAmount: 42,
             itemQuantity: 1000,
-            goldPrice: 438,
+            goldPrice: 488,
             image: {
                 src: ultimateManaCaskImg,
             },
@@ -333,7 +333,7 @@ export default function PotionsWrapper(props: Props) {
             itemName: 'Ultimate Spirit Cask',
             tcAmount: 42,
             itemQuantity: 1000,
-            goldPrice: 438,
+            goldPrice: 488,
             image: {
                 src: ultimateSpiritCaskImg,
             },

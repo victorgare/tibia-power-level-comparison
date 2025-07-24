@@ -24,7 +24,7 @@ export default function RunesWrapper(props: Props) {
             itemName: 'Avalanche Rune',
             tcAmount: 12,
             itemQuantity: 250,
-            goldPrice: 57,
+            goldPrice: 64,
             image: {
                 src: avalancheRune,
             },
@@ -51,7 +51,7 @@ export default function RunesWrapper(props: Props) {
             itemName: 'Great Fireball Rune',
             tcAmount: 12,
             itemQuantity: 250,
-            goldPrice: 57,
+            goldPrice: 64,
             image: {
                 src: greatFireBallRune,
             },
@@ -87,7 +87,7 @@ export default function RunesWrapper(props: Props) {
             itemName: 'Stone Shower Rune',
             tcAmount: 7,
             itemQuantity: 250,
-            goldPrice: 37,
+            goldPrice: 41,
             image: {
                 src: stoneShowerRune,
             },
@@ -96,7 +96,7 @@ export default function RunesWrapper(props: Props) {
             itemName: 'Sudden Death Rune',
             tcAmount: 28,
             itemQuantity: 250,
-            goldPrice: 135,
+            goldPrice: 162,
             image: {
                 src: suddenDeathRune,
             },
@@ -105,7 +105,7 @@ export default function RunesWrapper(props: Props) {
             itemName: 'Thunderstorm Rune',
             tcAmount: 9,
             itemQuantity: 250,
-            goldPrice: 47,
+            goldPrice: 52,
             image: {
                 src: thuderStormRune,
             },
