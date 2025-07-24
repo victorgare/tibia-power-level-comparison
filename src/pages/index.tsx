@@ -8,6 +8,7 @@ import dejair from '../imgs/dejair.gif'
 import bobeek from '../imgs/bobeek.gif'
 import ErrorAlert from '@/components/Alerts/ErrorAlert'
 import InfoAlert from '@/components/Alerts/InfoAlert'
+import { calculateTotalXpFromLevel } from '@/helpers/level'
 
 export default function Home() {
     const [lineChart, setLineChart] = useState<LineChartModel[]>([])
@@ -93,15 +94,6 @@ export default function Home() {
         } else {
             setLineChart([])
         }
-    }
-
-    const calculateTotalXpFromLevel = (level: number) => {
-        return (
-            (50 * Math.pow(level, 3)) / 3 -
-            100 * Math.pow(level, 2) +
-            (850 * level) / 3 -
-            200
-        )
     }
 
     const validate = (
