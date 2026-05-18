@@ -201,23 +201,23 @@ export default function CharacterValue() {
                                 </TableHeader>
                                 <TableBody>
                                     {Array.from(rangePrices.entries()).map(
-                                        (item) => {
+                                        ([levelRange, priceRange]) => {
                                             return (
-                                                <TableRow key={item[0]}>
+                                                <TableRow key={levelRange}>
                                                     <TableCell>
-                                                        {item[0]}
+                                                        {levelRange}
                                                     </TableCell>
                                                     <TableCell>
                                                         <TextInput
-                                                            id={`price-${item[0]}`}
+                                                            id={`price-${levelRange}`}
                                                             label=""
                                                             placeholder="1.000"
-                                                            value={item[1].toString()}
+                                                            value={priceRange.toString()}
                                                             onChange={(
                                                                 event
                                                             ) => {
                                                                 const price =
-                                                                    parseInt(
+                                                                    parseFloat(
                                                                         event
                                                                             .target
                                                                             .value
@@ -229,7 +229,7 @@ export default function CharacterValue() {
                                                                         : price
 
                                                                 updatePrice(
-                                                                    item[0],
+                                                                    levelRange,
                                                                     parsedPrice
                                                                 )
                                                             }}
