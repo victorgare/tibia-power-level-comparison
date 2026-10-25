@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import TextInput from '@/components/TextInput/TextInput'
 import ProgressBar from '@/components/Pogressbar/Progressbar'
 import { fetchGuildData } from '@/api/GuildApi'
+import { GuildApiModel } from '@/api/Model/GuildApiModel'
 import { GuildMemberApiModel } from '@/api/Model/GuildMemberApiModel'
 import { fetchCharacterData } from '@/api/CharacterApi'
 import { PlayerApiModel } from '@/api/Model/PlayerApiModel'
@@ -33,7 +34,21 @@ export default function MembersResidence() {
             // clean old data
             resetData()
 
-            const guild = (await fetchGuildData(guildName)).guild
+            let guild: GuildApiModel['guild']
+            try {
+                guild = (await fetchGuildData(guildName)).guild
+            } catch (error) {
+                if (
+                    axios.isAxiosError(error) &&
+                    error.response?.status === 404
+                ) {
+                    setErrorMessages(['Guild not found'])
+                } else {
+                    console.error('Unable to fetch guild data', error)
+                    setErrorMessages(['Unable to fetch guild data'])
+                }
+                return
+            }
 
             if (guild.members_total > 0) {
                 setCurrentProgressCounter(0)
@@ -56,10 +71,21 @@ export default function MembersResidence() {
                     continue
                 }
 
-                const player = await fetchCharacterData(
-                    member.name,
-                    abortControllerRef.current.signal
-                )
+                let player: PlayerApiModel
+                try {
+                    player = await fetchCharacterData(
+                        member.name,
+                        abortControllerRef.current.signal
+                    )
+                } catch (error) {
+                    if (
+                        axios.isAxiosError(error) &&
+                        error.response?.status === 404
+                    ) {
+                        continue
+                    }
+                    throw error
+                }
 
                 setGuildMembers((prevValue) => [...prevValue, player])
             }
@@ -67,7 +93,8 @@ export default function MembersResidence() {
             if (axios.isCancel(error)) {
                 console.error('Request canceled')
             } else {
-                console.log(error)
+                console.error('Unable to fetch guild member data', error)
+                setErrorMessages(['Unable to fetch guild member data'])
             }
         }
     }
