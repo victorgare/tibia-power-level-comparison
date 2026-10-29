@@ -3,10 +3,14 @@ import DecimalInput from '../DecimalInputs/DecimalInput'
 import TextInput from '../TextInput/TextInput'
 import PlayerFormProps from './Model/PlayerFormProps'
 import Image from 'next/image'
-import { ChangeEvent, useEffect } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { fetchCharacterData } from '../../api/CharacterApi'
+import axios from 'axios'
+import ErrorAlert from '../Alerts/ErrorAlert'
 
 export default function PlayerForm(props: PlayerFormProps) {
+    const [errorMessages, setErrorMessages] = useState<string[]>([])
+
     var debounced = useDebouncedCallback(
         (property: string, value: string | number) => {
             props.onChange?.({
@@ -18,11 +22,22 @@ export default function PlayerForm(props: PlayerFormProps) {
     )
 
     const nameDebounced = useDebouncedCallback(async (name: string) => {
-        const character = (await fetchCharacterData(name)).character.character
-        if (character.level > 0) {
-            debounced('name', name)
-            debounced.flush()
-            debounced('currentLevel', character.level)
+        setErrorMessages([])
+        try {
+            const character = (await fetchCharacterData(name)).character
+                .character
+            if (character.level > 0) {
+                debounced('name', name)
+                debounced.flush()
+                debounced('currentLevel', character.level)
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response?.status === 404) {
+                setErrorMessages(['Character not found'])
+            } else {
+                console.error('Unable to fetch character data', error)
+                setErrorMessages(['Unable to fetch character data'])
+            }
         }
     }, 1000)
 
@@ -60,6 +75,7 @@ export default function PlayerForm(props: PlayerFormProps) {
                         onChange={characterNameChange}
                     />
                 </div>
+                <ErrorAlert messages={errorMessages} />
                 <div className="mb-6">
                     <DecimalInput
                         id="current-level"
